@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProgressPractice
 {
+    /// <summary>
+    /// 進捗管理のViewModelです
+    /// </summary>
     class ProgressViewModel : INotifyPropertyChanged
     {
         private bool startEnabled = true;

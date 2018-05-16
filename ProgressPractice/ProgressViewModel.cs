@@ -82,16 +82,20 @@ namespace ProgressPractice
         {
             const int Count = 10;
             const int PreiodMsec = 500;
+            var l_progressReport = new ProgressReport()
+            {
+                Persent = 0,
+                EstimatedRemain = TimeSpan.FromMilliseconds((Count) * PreiodMsec),
+            };
+
             for (int l_i = 0; l_i < Count; l_i++)
             {
                 await Task.Delay(PreiodMsec);
 
+                l_progressReport.Persent = (l_i + 1) * Count;
+                l_progressReport.EstimatedRemain = TimeSpan.FromMilliseconds((Count - 1 - l_i) * PreiodMsec);
 
-                p_progress.Report(new ProgressReport()
-                {
-                    Persent = (l_i + 1) * Count,
-                    EstimatedRemain = TimeSpan.FromMilliseconds((Count - 1 - l_i) * PreiodMsec),
-                });
+                p_progress.Report(l_progressReport);
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
